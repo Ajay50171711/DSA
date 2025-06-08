@@ -1,0 +1,37 @@
+1. What is Time Complexity?
+Time complexity is a way to represent how the runtime of an algorithm grows with the size of the input.
+
+2. Why is Time Complexity Important?
+When data gets big (millions or billions of elements), a slow algorithm can become unusable. Time complexity helps us compare which algorithm is better for large data sizes.
+
+Time Complexity                 	Behavior	                            Example Algorithm
+O(1)	                         Constant time	                        Accessing array element
+O(log n)	                      Logarithmic	                             Binary search
+O(n)	                            Linear	                               Linear search
+O(n log n)	                    Linearithmic	                        Merge Sort, Heap Sort
+O(n²)          	                 Quadratic                        	Bubble Sort, Selection Sort
+O(n³)	                            Cubic	                                  3-nested loops
+O(2ⁿ)         	                Exponential	                            Recursive Fibonacci
+O(n!)	                           Factorial	                          Brute-force permutations
+
+
+O(1) – Constant Time
+Analogy:
+You open a locker and take out your pen — no matter how many lockers there are, it always takes 1 step.
+ex. Access the element of the array
+
+O(log n) – Logarithmic Time
+Analogy:
+You search for a word in a dictionary by opening in the middle and deciding to go left or right. Each time, the problem size is halved.
+ex. O(log n) means the problem size is cut in half at each step, drastically reducing the number of operations.
+This happens in algorithms like Binary Search, where we discard half of the elements in every iteration.
+
+
+
+
+
+
+
+
+
+
