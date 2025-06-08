@@ -1,0 +1,150 @@
+Compile-Time Array Declaration
+=======================================
+
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};  // Size and values known at compile time
+
+    printf("Element at index 2: %d\n", arr[2]);
+
+    return 0;
+}
+
+
+
+
+Run-Time Array Declaration (using Variable Length Arrays)
+==========================================================
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];  // Variable Length Array (VLA) - size known at run-time
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Array elements are:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
+
+
+ Insert Value at a Specific Position in an Array (For Sorted Array)
+==============================================================================
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, pos, value;
+
+    // Step 1: Read size and elements
+    printf("Enter number of elements (max 100): ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Step 2: Read position and value to insert
+    printf("Enter position to insert (0 to %d): ", n);
+    scanf("%d", &pos);
+    
+    if (pos < 0 || pos > n) {
+        printf("Invalid position!\n");
+        return 1;
+    }
+
+    printf("Enter value to insert: ");
+    scanf("%d", &value);
+
+    // Step 3: Shift elements to the right
+    for (int i = n; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    // Step 4: Insert the new value
+    arr[pos] = value;
+    n++;  // Increase array size
+
+    // Step 5: Print updated array
+    printf("Array after insertion:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
+
+
+Insert at Specific Position and Move Removed Element to End(For Unsorted Array)
+======================================================================
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, pos, value,i;
+
+    // Step 1: Read size and elements
+    printf("Enter number of elements (max 100): ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Step 2: Read position and value to insert
+    printf("Enter position to insert (0 to %d): ", n);
+    scanf("%d", &pos);
+    
+    if (pos < 0 || pos > n) {
+        printf("Invalid position!\n");
+        return 1;
+    }
+
+    printf("Enter value to insert: ");
+    scanf("%d", &value);
+
+    // Step 3: Shift elements to last index
+   arr[n]=arr[pos];
+
+    // Step 4: Insert the new value
+    arr[pos] = value;
+    n++;  // Increase array size
+
+    // Step 5: Print updated array
+    printf("Array after insertion:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
