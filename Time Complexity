@@ -26,6 +26,30 @@ You search for a word in a dictionary by opening in the middle and deciding to g
 ex. O(log n) means the problem size is cut in half at each step, drastically reducing the number of operations.
 This happens in algorithms like Binary Search, where we discard half of the elements in every iteration.
 
+ O(n) – Linear Time
+Analogy:
+You go through a stack of papers one by one to find a name — the time grows with the number of papers.
+ex.O(n) means the algorithm goes through each element one by one, so time grows linearly with input size.
+Examples include linear search or printing all elements of an array using a single loop.
+
+O(n log n) – Linearithmic Time
+Analogy:
+Imagine sorting multiple decks of cards, and each time you divide them into halves, sort, and then merge.
+ex.O(n log n) means the input is divided logarithmically (like in log n), but we also process each element (n) at every level.
+This is common in efficient sorting algorithms like Merge Sort and Heap Sort.
+
+O(n²) – Quadratic Time
+Analogy
+Imagine you’re in a classroom with n students, and each student shakes hands with every other student.
+The number of handshakes grows rapidly as the class gets bigger — that’s O(n²) time.
+ex.O(n²) means the algorithm uses nested loops, where for each element, it processes all elements again, causing operations to grow quadratically.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
