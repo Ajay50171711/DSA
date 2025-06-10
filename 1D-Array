@@ -277,6 +277,46 @@ int main() {
 1D Array With Pointer
 ---------------------
 
+Array name itself a pointer to the base address of the array
+
+int a[] = {6,2,1,5,3}
+
+suppose base adress of array is 100 so....
+100->6
+104->2
+108->1
+112->5
+116->3
+
+in this case if we  
+printf("%p",a);   o/p = 100
+int *q;
+q=a;
+printf("p",q);  o/p 100
+q++
+printf("%p",q);                     in this case it print the base addres of array which is the value of p
+printf("%d",*q);                    in this case it print the value at base addres of array which is 6
+printf("%p",&q);                    in this case it print the addres of the q where it store the address of base address
+
+
+
+a=&a  true
+q=&q  false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
