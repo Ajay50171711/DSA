@@ -1,41 +1,114 @@
-2D Array is array of arrays
+📚 2D Arrays in C
 ------------------------------
 
-Compile Time Initialization
+✅ What is a 2D Array?
+A 2D array is an array of arrays — basically, a table of rows and columns.
+
+Example:  
+int a[2][3];  // A 2-row, 3-column 2D array
+
+This creates:
+Row 0: a[0][0], a[0][1], a[0][2]
+Row 1: a[1][0], a[1][1], a[1][2]
+
+🛠️ Compile-Time Initialization
+C allows you to initialize 2D arrays in multiple valid ways:
+
+✅ Valid Declarations:
+int a[2][3] = {1, 2, 3, 4, 5, 6};            // Row-wise flattened
+int a[2][3] = {{1, 2, 3}, {4, 5, 6}};        // Explicit row grouping
+int a[][3]  = {{1, 3, 7}, {9, 6, 0},
+               {4, 8, 2}, {7, 1, 9}};        // Compiler infers rows
 
 
-int a[2][3] ={1,2,3,4,5,6};
-int a[2][3]={{1,2,3},{4,5,6}};
-int a[][3] ={{1,3,7},{9,6,0},{4,8,2},{7,1,9}};
-int a[2][]  = Wrong Declaration
+❌ Invalid Declaration:
+int a[2][] = {{1, 2}, {3, 4}};  // ❌ Error: columns must be specified
+Reason: In 2D arrays, column size is essential for the compiler to compute memory offsets using pointer arithmetic.
 
+⌛ Run-Time Initialization
+We can use loops and scanf() to populate a 2D array during program execution.
 
+Example:
+#include <stdio.h>
 
-Run Time Initialization
+int main() {
+    int a[2][3];
+    int i, j;
+    
+    printf("Enter the elements of the array:\n");
 
-int a[2][3];
-printf("Enter The Element Of The Array");
-for(i=0;i<2;i++){
-for(j=0;j<3;j++){
-scanf("%d",&a[i][j]);
+    for(i = 0; i < 2; i++) {
+        for(j = 0; j < 3; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    printf("You entered:\n");
+    for(i = 0; i < 2; i++) {
+        for(j = 0; j < 3; j++) {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
 }
-}
 
 
+🧠 Memory Storage in 2D Arrays
+---------------------------------
+
+🟩 Row-Major Order (C Language Default)
+Elements are stored row by row in a linear memory block.
+
+For int a[2][3] = {{1,2,3},{4,5,6}};, memory layout is:
+
+Index:     0  1  2  3  4  5
+Value:     1  2  3  4  5  6
+            ↑row0    ↑row1
+
+✅ Row-Major Memory Representation
+
++----------+----------+----------+----------+----------+----------+
+| a[0][0]=1| a[0][1]=2| a[0][2]=3| a[1][0]=4| a[1][1]=5| a[1][2]=6|
+|  1000    |  1004    |  1008    |  1012    |  1016    |  1020    |
++----------+----------+----------+----------+----------+----------+
 
 
+Formula (Row-Major):
+To access a[i][j] in memory:
+address = base_address + ((i * total_columns) + j) * sizeof(datatype)
 
 
+🟦 Column-Major Order (Used in Fortran, MATLAB)
+Elements are stored column by column.
 
+For the same array a[2][3], memory layout would be:
 
+Original 2D Array:
++----+----+----+
+| 1  | 2  | 3  |   ← Row 0
++----+----+----+
+| 4  | 5  | 6  |   ← Row 1
++----+----+----+
 
+Column-Major Order in Memory:
+Index:     0    1    2    3    4    5
+Value:     1    4    2    5    3    6
+            ↑col0     ↑col1     ↑col2
 
+🟦 Column-Major Memory Representation 
 
++----------+----------+----------+----------+----------+----------+
+| a[0][0]=1| a[1][0]=4| a[0][1]=2| a[1][1]=5| a[0][2]=3| a[1][2]=6|
+|  1000    |  1004    |  1008    |  1012    |  1016    |  1020    |
++----------+----------+----------+----------+----------+----------+
 
+Formula (Column-Major):
+-----------------------
+To access a[i][j] in memory:
 
-
-
-
-
+address = base_address + ((j * total_rows) + i) * sizeof(datatype)
+⚠️ Note: C does not support column-major layout by default, but understanding it helps when working with external libraries like MATLAB or OpenCV.
 
 
