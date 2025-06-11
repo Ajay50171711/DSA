@@ -158,6 +158,7 @@ int main() {
 }
 
 ============================================================
+// 🔄 Accessing 2D array linearly using pointer arithmetic
 
 *(p + 0)  = a[0][0] = 6
 *(p + 1)  = a[0][1] = 2
@@ -170,7 +171,7 @@ int main() {
 *(p + 8)  = a[2][2] = 8
 
 
-
+https://chatgpt.com/canvas/shared/6849ccf685588191800f6f7393dda027
 
 
 
