@@ -112,3 +112,66 @@ address = base_address + ((j * total_rows) + i) * sizeof(datatype)
 ⚠️ Note: C does not support column-major layout by default, but understanding it helps when working with external libraries like MATLAB or OpenCV.
 
 
+
+2D Array With Pointer
+----------------------
+
+🧠 Understanding Pointers and 2D Arrays in C
+
+#include <stdio.h>
+
+int main() {
+    int a[3][3] = {6, 2, 5, 0, 1, 3, 4, 9, 8};  // 3x3 matrix
+    int *p;
+    p = &a[0][0];  //
+
+    // Pointer and array address checks
+    printf("%p\n", p);
+    printf("%p\n", a);
+    printf("%p\n", &a[0][0]);
+    printf("%p\n", &a);
+    printf("%p\n", a[0]);
+    printf("%p\n", *a);
+    printf("%p\n", 0[a]);
+
+    // Addressing rows
+    printf("%p\n", *(a + 1));
+    printf("%p\n", a[1]);
+    printf("%p\n", &a[1][0]);
+
+    // Accessing values
+    printf("%p\n", *(a + 1) + 2);
+    printf("%d\n", *(*(a + 1) + 2));  // a[1][2]
+    printf("%d\n", a[1][2]);
+
+    printf("%d\n", a[2][0]);
+    printf("%d\n", *(*(a + 2) + 0));
+    printf("%d\n", *(a[2] + 0));
+
+    // Base address value
+    printf("%d\n", **a);
+
+    // Address of element a[1][1]
+    printf("%p\n", a[1] + 1);
+
+    return 0;
+}
+
+============================================================
+
+*(p + 0)  = a[0][0] = 6
+*(p + 1)  = a[0][1] = 2
+*(p + 2)  = a[0][2] = 5
+*(p + 3)  = a[1][0] = 0
+*(p + 4)  = a[1][1] = 1
+*(p + 5)  = a[1][2] = 3
+*(p + 6)  = a[2][0] = 4
+*(p + 7)  = a[2][1] = 9
+*(p + 8)  = a[2][2] = 8
+
+
+
+
+
+
+
