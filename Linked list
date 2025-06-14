@@ -1,0 +1,41 @@
+1. 📖 Introduction
+A Linked List is a linear data structure where each element (node) points to the next. It does not store data in contiguous memory like arrays.
+
+| Feature            | Array                | Linked List            |
+| ------------------ | -------------------- | ---------------------- |
+| Size               | Fixed                | Dynamic                |
+| Memory Allocation  | At once (contiguous) | One-by-one (scattered) |
+| Insertion/Deletion | Hard in middle       | Easy                   |
+| Random Access      | Yes (fast)           | No (go step by step)   |
+
+
+3. 🔁 Types of Linked Lists
+----------------------------
+Singly Linked List
+
+Doubly Linked List
+
+Circular Linked List 
+
+Doubly Circular Linked List
+--------------------------------------
+In C, there is no built-in data type that can store both data and a memory address (pointer) together in one unit.
+
+But in a linked list, each element (called a node) must store:
+
+1)Data (like an integer, float, etc.)
+
+2)Address of the next node (i.e., a pointer)
+
+So, to combine these two things (data + pointer), we use a user-defined data type using struct.
+------------------------------------------------------------------------------------------------------------------------------
+
+4. 🧱 Node Structure (in C)
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+
+
+
