@@ -37,5 +37,213 @@ struct Node {
 };
 
 
+W.A.P to implement linked list
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+    // Define the node structure
+    struct node {
+        int data;
+        struct node *next;
+    };
+
+    // Declare pointers and variables
+    struct node *head = NULL, *newnode, *temp;
+    int choice = 1, count = 0;
+
+    // Creating the linked list
+    while (choice) {
+        newnode = (struct node*)malloc(sizeof(struct node));
+
+        // Check for memory allocation failure
+        if (newnode == NULL) {
+            printf("Memory allocation failed.\n");
+            return 1;
+        }
+
+        printf("Enter the element for the list:\n");
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+
+        if (head == NULL) {
+            head = temp = newnode;  // first node
+        } else {
+            temp->next = newnode;   // link last node
+            temp = newnode;         // update last node
+        }
+
+        count++;
+
+        printf("Do you want to insert more elements to the list? (1 for Yes / 0 for No): ");
+        scanf("%d", &choice);
+    }
+
+    // Displaying the list
+    printf("\nElements of the linked list are:\n");
+    temp = head;
+    while (temp != NULL) {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+
+    printf("Number of elements in linked list is: %d\n", count);
+
+    return 0;
+}
+
+
+insert at beginning
+-----------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    struct node {
+        int data;
+        struct node *next;
+    };
+
+    struct node *head = NULL, *newnode, *temp;
+    int choice = 1, count = 0, newnumber;
+
+    // Creating initial list
+    while (choice) {
+        newnode = (struct node*)malloc(sizeof(struct node));
+        if (newnode == NULL) {
+            printf("Memory allocation failed.\n");
+            return 1;
+        }
+
+        printf("Enter the element for the list:\n");
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+
+        if (head == NULL) {
+            head = temp = newnode;
+        } else {
+            temp->next = newnode;
+            temp = newnode;
+        }
+
+        count++;
+
+        printf("Do you want to insert more elements to the list? Press (1 for Yes / 0 for No): ");
+        scanf("%d", &choice);
+    }
+
+    // Inserting at the beginning
+    printf("\nWe are going to insert an element at the beginning.\n");
+    printf("Enter an element to insert:\n");
+    scanf("%d", &newnumber);
+
+    newnode = (struct node*)malloc(sizeof(struct node));
+    if (newnode == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    newnode->data = newnumber;
+    newnode->next = head;
+    head = newnode;
+    count++;
+
+    // Displaying list
+    printf("\nElements of the linked list are:\n");
+    temp = head;
+    while (temp != NULL) {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+
+    printf("Total number of elements in the linked list is: %d\n", count);
+
+    return 0;
+}
+
+
+innsert at ending position
+--------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    struct node {
+        int data;
+        struct node *next;
+    };
+
+    struct node *head = NULL, *newnode, *temp;
+    int choice = 1, count = 0, newnumber;
+
+    // Create the initial linked list
+    while (choice) {
+        newnode = (struct node*)malloc(sizeof(struct node));
+        if (newnode == NULL) {
+            printf("Memory allocation failed.\n");
+            return 1;
+        }
+
+        printf("Enter the element for the list:\n");
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+
+        if (head == NULL) {
+            head = temp = newnode;
+        } else {
+            temp->next = newnode;
+            temp = newnode;
+        }
+
+        count++;
+
+        printf("Do you want to insert more elements to the list? Press (1 for Yes / 0 for No): ");
+        scanf("%d", &choice);
+    }
+
+    // Insert at the end
+    printf("\nWe are going to insert an element at the end.\n");
+    printf("Enter an element to insert:\n");
+    scanf("%d", &newnumber);
+
+    newnode = (struct node*)malloc(sizeof(struct node));
+    if (newnode == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+    newnode->data = newnumber;
+    newnode->next = NULL;
+
+    temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newnode;
+    count++;
+
+    // Display the list
+    printf("\nElements of the linked list are:\n");
+    temp = head;
+    while (temp != NULL) {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+
+    printf("Total number of elements in the linked list: %d\n", count);
+
+    return 0;
+}
+
+
+
+insert at specific position
+--------------------------------
+
+
+
+
+
+
 
 
