@@ -240,7 +240,83 @@ int main() {
 insert at specific position
 --------------------------------
 
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	struct node{
+		int data;
+		struct node *next;
+	};
+	
+	
+	struct node *head=NULL,*temp,*newnode;
+	int choice=1,count=0;
+	
+	while(choice){
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("eneter the data for node");
+	scanf("%d",&newnode->data);
+	newnode->next = NULL;
+	
+	if(head==NULL){
+		head = temp = newnode;
+	}
+	else{
+		temp->next=newnode;
+		temp=newnode;
+	}
+	
+	printf("enter the chice 1/0");
+	scanf("%d",&choice);
+	
+}
 
+
+		printf("element of the list are \n");
+		
+		temp = head;
+		while(temp!=NULL){
+			printf("%d\n",temp->data);
+			temp=temp->next;
+		}
+		
+		int pos;
+		
+		printf("enter the position to iunsert newnode");
+		scanf("%d",&pos);
+		
+		
+		newnode = (struct node*)malloc(sizeof(struct node));
+		
+		
+		printf("enter the data");
+		scanf("%d",&newnode->data);
+		newnode->next=NULL;
+		
+		
+		
+		int i = 1;
+		temp = head;
+		while(i<pos-1){
+			temp=temp->next;
+		}
+		
+		
+		newnode->next = temp->next;
+		temp->next = newnode;
+		
+			printf("element of the list are \n");
+		
+		temp = head;
+		while(temp!=NULL){
+			printf("%d\n",temp->data);
+			temp=temp->next;
+		}
+		
+		
+	
+	return 0;
+}
 
 
 
