@@ -1,0 +1,48 @@
+// Implementation of doubly linked list.....
+
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{
+	struct node{
+		int data;
+		struct node *next;
+		struct node *prev;
+	};
+
+	int choice =1, count=0;
+	struct node *newnode,*temp,*head;
+	
+	head = NULL;
+	while(choice){
+	 	newnode = (struct node*)malloc(sizeof(struct node));
+	 	
+		printf("enter the data for the newnode");
+	
+		scanf("%d",&newnode->data);
+		newnode->next->next->prev=newnode->next;
+		newnode->next = NULL;
+		
+		 if(head==NULL){
+		 	head=temp=newnode;
+		 }
+		 else{
+		 temp->next=newnode;
+		 temp=newnode;
+		 }
+		 count++;
+		 
+		printf("Enter 1 if you wanna add more elements Else enter 0 : ");
+		 scanf("%d",&choice);
+	}
+	printf("elements of the LInked LIst are:\n");
+	temp=head;
+	while(temp!=NULL){
+		printf("%d\n",temp->data);
+		temp=temp->next;
+		
+	}
+
+return 0;
+
+}
