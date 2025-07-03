@@ -46,3 +46,97 @@ int main()
 return 0;
 
 }
+
+
+----------------------------------------------
+//insert node at start and end of the doubly linked list
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	
+	struct node{
+		int data;
+		struct node *next;
+		struct node *prev;
+		
+	};
+	
+	
+	struct node *head,*temp,*newnode;
+	int choice = 1;
+	head = NULL;
+	
+	while(choice){
+	
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("data\n");
+	scanf("%d",&newnode->data);
+	newnode->next = NULL;
+	newnode->prev = NULL;
+	if(head == NULL){
+		head = temp = newnode;
+	}
+	else{
+		temp->next = newnode;
+		newnode->prev = temp;
+		temp = newnode;
+	}
+	printf("choice 1/0\n");
+	scanf("%d",&choice);
+	
+}
+
+temp = head;
+while(temp!=NULL){
+	printf("%d\n",temp->data);
+	temp = temp->next;
+}
+
+// insert at start
+	
+	printf("now we are going to insert at beginning\n");
+	
+	
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("enter the data for new node");
+	scanf("%d",&newnode->data);
+	newnode->next = head;
+	head->prev = newnode;
+	newnode->prev = NULL;
+	head = newnode;
+	
+	 temp = head;
+	 while(temp!=NULL){
+	 	printf("%d\n",temp->data);
+	temp = temp->next;
+	 }
+	 
+	// insert at start
+	
+	
+	 printf("now we are going to insert at the end\n ");
+	
+	newnode = (struct node*)malloc(sizeof(struct node));
+	
+	printf("enter the data for new node");
+	scanf("%d",&newnode->data); 
+	 
+	 temp = head;
+	 while(temp->next!=NULL){
+	 	temp=temp->next;
+	 }
+	 
+	 temp->next = newnode;
+	 newnode->prev = temp;
+	 newnode->next = NULL;
+
+temp = head;
+while(temp!=NULL){
+	printf("%d\n",temp->data);
+	temp = temp->next;
+}
+	
+	
+	return 0;
+}
