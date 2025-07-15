@@ -45,7 +45,7 @@ while(temp->next!=head);
 }
 
 
-//Insert at Start
+//Insertion Operation In Circular Linked List
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -91,7 +91,7 @@ do
 }
 while(temp!=head);
 
-
+//Insert at Beginning
 	printf("Insert at Beginning");
 	newnode = (struct node*)malloc(sizeof(struct node));
 	printf("enter the data for new node");
@@ -112,6 +112,63 @@ while(temp->next!=head);
 
 	printf("element of the linked list are\n");
 	temp= head;
+	do
+	{
+		printf("%d\n",temp->data);
+		temp =  temp->next;
+	}
+	while(temp!=head);
+//Insert at END
+	printf("Insert at END");
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("enter the data for new node");
+	scanf("%d",&newnode->data);
+	newnode->next=NULL;
+	
+	temp=head;
+	do
+	{
+		temp =  temp->next;
+	}
+	while(temp->next!=head);
+
+	temp->next=newnode;
+	newnode->next=head;
+	
+		printf("element of the linked list are\n");
+	temp= head;
+	do
+	{
+		printf("%d\n",temp->data);
+		temp =  temp->next;
+	}                           
+	while(temp!=head);
+//Insert at Specific Position
+	printf("Insert at Specific Position");
+	int pos;
+		
+		printf("enter the position to iunsert newnode");
+		scanf("%d",&pos);
+		
+		
+		newnode = (struct node*)malloc(sizeof(struct node));
+		
+		
+		printf("enter the data");
+		scanf("%d",&newnode->data);
+		newnode->next=NULL;
+		int i = 1;
+		temp = head;
+		while(i<pos-1){
+			temp=temp->next;
+		}
+		
+		newnode->next = temp->next;
+		temp->next = newnode;
+		
+			printf("element of the list are \n");
+		
+		temp= head;
 	do
 	{
 		printf("%d\n",temp->data);
