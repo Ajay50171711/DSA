@@ -178,4 +178,128 @@ while(temp->next!=head);
 	
 	return 0;
 }
+
+------------------------------------------------------
+DELETION OPERATION
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	
+	struct node{
+		int data;
+		struct node *next;
+	};
+	
+	struct node *newnode,*head,*temp;
+	head = NULL;
+	int choice = 1;
+	struct node *del;
+	
+	while(choice){
+		
+	
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("enter the data for new node");
+	scanf("%d",&newnode->data);
+	newnode->next = NULL;
+	
+	if(head == NULL){
+		
+		head = temp = newnode;
+	}
+	else{
+		temp->next = newnode;
+		temp = newnode;
+		temp->next =head;
+	}
+	printf("enter your choice 1/0");
+	scanf("%d",&choice);
+}
+//printf("%d",temp->next->data);
+
+printf("element of the linked list are\n");
+temp= head;
+do
+{
+	printf("%d\n",temp->data);
+	temp =  temp->next;
+}
+while(temp!=head);
+
+	//delete at start
+
+printf("Now we will are going to delete the first node in the linked list\n");
+
+		del=head;
+		head=head->next;
+		temp=head;
+		do{
+			temp=temp->next;
+		}
+		while(temp->next!=del);
+		temp->next=head;
+		free(del);
+		
+		printf("element of the linked list are\n");
+		
+	temp= head;
+	do
+	{
+		printf("%d\n",temp->data);
+		temp =  temp->next;
+	}
+	while(temp!=head);
+	
+	//delete at last
+	
+	printf("Now we will are going to delete the LAST node in the linked list\n");
+	temp=head;
+	do{
+		temp=temp->next;
+		
+	}
+	while(temp->next->next!=head);
+	
+	del=temp->next;
+	temp->next=head;
+	free(del);
+	
+	temp= head;
+	do
+	{
+		printf("%d\n",temp->data);
+		temp =  temp->next;
+	}
+	while(temp!=head);
+	
+	// DELETE AT SPECIFIC POSITION 
+ 		int pos,i=1;
+ 		
+ 		printf("enter the position on which u wanna delete the node in the linked list\n");
+ 		scanf("%d",&pos);
+ 		
+ 		
+ 		printf("Now we will are going to delete the node on %d",pos, " in the linked list \n");
+ 		printf("\n");
+ 		temp=head;
+ 		while(i<pos-1)
+		 {
+ 			temp=temp->next;
+ 			i++;
+ 		 }
+ 		 del=temp->next;
+ 		 temp->next=temp->next->next;
+ 		 free(del);
+	
+			temp= head;
+	do
+	{
+		printf("%d\n",temp->data);
+		temp =  temp->next;
+	}
+	while(temp!=head);
+	
+	return 0;
+}
    
