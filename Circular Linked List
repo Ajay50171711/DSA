@@ -303,3 +303,73 @@ printf("Now we will are going to delete the first node in the linked list\n");
 	return 0;
 }
    
+---------------------------------
+REVERSE CICULAR LINKED LIST
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *newnode, *head = NULL, *temp, *tail;
+    int choice = 1;
+
+    // Creating the circular singly linked list
+    while (choice) {
+        newnode = (struct node *)malloc(sizeof(struct node));
+        printf("Enter data for new node: ");
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+
+        if (head == NULL) {
+            head = temp = newnode;
+        } else {
+            temp->next = newnode;
+            temp = newnode;
+        }
+        temp->next = head;  // Maintain circularity
+
+        printf("Enter your choice 1/0: ");
+        scanf("%d", &choice);
+    }
+
+    // Display original list
+    printf("Elements of the linked list are:\n");
+    temp = head;
+    if (head != NULL) {
+        do {
+            printf("%d\n", temp->data);
+            temp = temp->next;
+        } while (temp != head);
+    }
+
+    // Reverse the circular linked list
+    struct node *prev = NULL, *curr = head, *next;
+    tail = head;
+
+    do {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    } while (curr != head);
+
+    head->next = prev;  // Original head now becomes tail; point it to new head
+    head = prev;        // Update head
+
+    // Display reversed list
+    printf("Reversed elements of the linked list are:\n");
+    temp = head;
+    if (head != NULL) {
+        do {
+            printf("%d\n", temp->data);
+            temp = temp->next;
+        } while (temp != head);
+    }
+
+    return 0;
+}
