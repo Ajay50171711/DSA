@@ -39,7 +39,7 @@ do
 	printf("%d\n",temp->data);
 	temp =  temp->next;
 }
-while(temp->next!=head);
+while(temp!=head);
 
 	return 0;
 }
