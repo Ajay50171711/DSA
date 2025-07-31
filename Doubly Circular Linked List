@@ -1,1 +1,80 @@
+// Implementation of Doubly Circular Linked List
+//-----------------------------------------------------
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	
+	struct node{
+		int data;
+		struct node *next;
+		struct node *prev;
+	};
+	struct node *newnode,*head,*temp;
+	head = NULL;
+	int choice = 1;
+	
+	while(choice)
+  {
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("enter the data for new node");
+	scanf("%d",&newnode->data);
+	newnode->next = NULL;
+	
+	if(head == NULL){
+		head=temp=newnode;
+		 	newnode->next=head;
+			newnode->prev=head;	 
+	}
+	else{
+	 temp->next=newnode;
+		 newnode->prev=temp;
+		 newnode->next=head;
+		 head->prev=newnode;
+		 temp = newnode;
+	}
+	printf("enter your choice 1/0");
+	scanf("%d",&choice);
+}
+//printf("%d",temp->next->data);
+
+printf("element of the linked list are\n");
+temp= head;
+do
+{
+	printf("%d\n",temp->data);
+	temp =  temp->next;
+}
+while(temp!=head);
+
+// INSERTION AT START of Doubly Circular Linked List
+//-----------------------------------------------------
+
+newnode = (struct node*)malloc(sizeof(struct node));
+
+  	printf("INSERTION AT START of Doubly Circular Linked List\n");
+  	printf("enter Element to Insert At Start Of Doubly Circular Linked List");
+  	
+  	temp=head->prev;
+  	
+  	scanf("%d",&newnode->data);
+  	
+  	temp->next=newnode;
+  	newnode->prev=temp;
+  	newnode->next=head;
+  	head->prev=newnode;
+  	head=newnode;
+  	 
+  	
+	printf("element of the linked list are\n");
+	temp= head;
+	do
+	{
+		printf("%d\n",temp->data);
+		temp =  temp->next;
+	}
+	while(temp!=head);
+  	
+  
+  	return 0;
+}
 
