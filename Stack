@@ -1,0 +1,124 @@
+Implemntation of stack
+========================
+
+#include <stdio.h>
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+// 1. Push
+void push(int value) {
+    if (top == MAX - 1) {
+        printf("Stack Overflow!\n");
+    } else {
+        stack[++top] = value;
+        printf("%d pushed to stack.\n", value);
+    }
+}
+
+// 2. Pop
+void pop() {
+    if (top == -1) {
+        printf("Stack Underflow!\n");
+    } else {
+        printf("%d popped from stack.\n", stack[top--]);
+    }
+}
+
+// 3. Peek (Top)
+void peek() {
+    if (top == -1) {
+        printf("Stack is empty.\n");
+    } else {
+        printf("Top element is: %d\n", stack[top]);
+    }
+}
+
+// 4. isEmpty
+void isEmpty() {
+    if (top == -1)
+        printf("Stack is empty.\n");
+    else
+        printf("Stack is not empty.\n");
+}
+
+// 5. isFull
+void isFull() {
+    if (top == MAX - 1)
+        printf("Stack is full.\n");
+    else
+        printf("Stack is not full.\n");
+}
+
+// 6. Display
+void display() {
+    if (top == -1) {
+        printf("Stack is empty.\n");
+    } else {
+        printf("Stack elements:\n");
+        for (int i = top; i >= 0; i--) {
+            printf("%d\n", stack[i]);
+        }
+    }
+}
+
+// 7. Size
+void size() {
+    printf("Stack size: %d\n", top + 1);
+}
+
+// 8. Clear
+void clear() {
+    top = -1;
+    printf("Stack cleared.\n");
+}
+
+// Main function
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n--- Stack Operations Menu ---\n");
+        printf("1. Push\n2. Pop\n3. Peek\n4. isEmpty\n5. isFull\n");
+        printf("6. Display\n7. Size\n8. Clear\n9. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+        case 1:
+            printf("Enter value to push: ");
+            scanf("%d", &value);
+            push(value);
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            peek();
+            break;
+        case 4:
+            isEmpty();
+            break;
+        case 5:
+            isFull();
+            break;
+        case 6:
+            display();
+            break;
+        case 7:
+            size();
+            break;
+        case 8:
+            clear();
+            break;
+        case 9:
+            printf("Exiting...\n");
+            return 0;
+        default:
+            printf("Invalid choice. Try again.\n");
+        }
+    }
+
+    return 0;
+}
