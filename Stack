@@ -122,3 +122,141 @@ int main() {
 
     return 0;
 }
+
+=======================================================
+By using Linked List
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* top = NULL;
+
+// Push
+void push(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = top;
+    top = newNode;
+    printf("%d pushed to stack.\n", value);
+}
+
+// Pop
+void pop() {
+    if (top == NULL) {
+        printf("Stack Underflow!\n");
+        return;
+    }
+    struct Node* temp = top;
+    printf("%d popped from stack.\n", temp->data);
+    top = top->next;
+    free(temp);
+}
+
+// Peek
+void peek() {
+    if (top == NULL)
+        printf("Stack is empty.\n");
+    else
+        printf("Top element: %d\n", top->data);
+}
+
+// isEmpty
+void isEmpty() {
+    if (top == NULL)
+        printf("Stack is empty.\n");
+    else
+        printf("Stack is not empty.\n");
+}
+
+// Display
+void display() {
+    if (top == NULL) {
+        printf("Stack is empty.\n");
+        return;
+    }
+    struct Node* temp = top;
+    printf("Stack elements:\n");
+    while (temp != NULL) {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+}
+
+// Size
+void size() {
+    int count = 0;
+    struct Node* temp = top;
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+    printf("Stack size: %d\n", count);
+}
+
+// Clear
+void clear() {
+    struct Node* temp;
+    while (top != NULL) {
+        temp = top;
+        top = top->next;
+        free(temp);
+    }
+    printf("Stack cleared.\n");
+}
+
+// Main function
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n--- Stack Menu ---\n");
+        printf("1. Push\n2. Pop\n3. Peek\n4. isEmpty\n5. Display\n");
+        printf("6. Size\n7. Clear\n8. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                peek();
+                break;
+            case 4:
+                isEmpty();
+                break;
+            case 5:
+                display();
+                break;
+            case 6:
+                size();
+                break;
+            case 7:
+                clear();
+                break;
+            case 8:
+                printf("Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice. Try again.\n");
+        }
+    }
+}
+
