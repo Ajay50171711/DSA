@@ -1,5 +1,5 @@
 Implemntation of stack
-========================
+===================================================
 
 #include <stdio.h>
 #define MAX 5
@@ -123,7 +123,7 @@ int main() {
     return 0;
 }
 
-=======================================================
+====================================================================================
 By using Linked List
 
 
@@ -344,3 +344,121 @@ int main() {
 
     return 0;
 }
+
+========================================================================================
+
+// Infix to Prefix Conversion
+// --------------------------
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+// Push
+void push(char c) {
+    stack[++top] = c;
+}
+
+// Pop
+char pop() {
+    return stack[top--];
+}
+
+// Peek
+char peek() {
+    if (top == -1) return '\0';
+    return stack[top];
+}
+
+// Precedence
+int precedence(char c) {
+    if (c == '^') return 3;
+    if (c == '*' || c == '/') return 2;
+    if (c == '+' || c == '-') return 1;
+    return 0;
+}
+
+// Function to reverse string
+void reverse(char str[]) {
+    int i, j;
+    char temp;
+    for (i = 0, j = strlen(str) - 1; i < j; i++, j--) {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+    }
+}
+
+// Infix to Postfix (helper function)
+void infixToPostfix(char infix[], char postfix[]) {
+    int i, k = 0;
+    char c;
+
+    for (i = 0; infix[i] != '\0'; i++) {
+        c = infix[i];
+
+        if (isalnum(c)) {  // Operand
+            postfix[k++] = c;
+        } 
+        else if (c == '(') {
+            push(c);
+        } 
+        else if (c == ')') {
+            while (peek() != '(') {
+                postfix[k++] = pop();
+            }
+            pop(); // remove '('
+        } 
+        else { // Operator
+            while (top != -1 && precedence(peek()) >= precedence(c)) {
+                postfix[k++] = pop();
+            }
+            push(c);
+        }
+    }
+
+    // Pop remaining operators
+    while (top != -1) {
+        postfix[k++] = pop();
+    }
+
+    postfix[k] = '\0';
+}
+
+// Infix to Prefix
+void infixToPrefix(char infix[], char prefix[]) {
+    char postfix[MAX];
+
+    // Step 1: Reverse infix and swap brackets
+    reverse(infix);
+    for (int i = 0; infix[i] != '\0'; i++) {
+        if (infix[i] == '(') infix[i] = ')';
+        else if (infix[i] == ')') infix[i] = '(';
+    }
+
+    // Step 2: Convert to postfix
+    infixToPostfix(infix, postfix);
+
+    // Step 3: Reverse postfix ? prefix
+    reverse(postfix);
+    strcpy(prefix, postfix);
+}
+
+int main() {
+    char infix[MAX], prefix[MAX];
+
+    printf("Enter Infix Expression: ");
+    scanf("%s", infix);
+
+    infixToPrefix(infix, prefix);
+
+    printf("Prefix Expression: %s\n", prefix);
+
+    return 0;
+}
+
