@@ -140,3 +140,73 @@ int main(){
 }
 
 ==================================================================================================
+circular queue
+---------------
+
+//circular queue implementatiomn using array
+
+#include<stdio.h>
+#include<stdlib.h>
+#define n 5
+
+int queue[n];
+int front =-1;
+int rear =-1;
+
+
+void enqueue(int value){
+	if(front == -1 && rear==-1){
+		front = rear = 0;
+		queue[rear]=value;
+	}
+	else if((rear+1)%n==front){
+		printf("queue is full");
+	}
+	else{
+		rear = (rear+1)%n;
+		queue[rear]=value;
+	}
+}
+
+void dequeue(){
+	if(front==-1 && rear == -1){
+		printf("their is no element to remove from the queue");
+	}
+	else if(front==rear){
+		front = rear= -1;
+	}
+	else{
+		printf("%d is dequeue\n",queue[front]);
+		front = (front+1)%n;
+	}
+}
+
+void display(){
+	int i =  front;
+	if(front==-1 && rear==-1){
+		printf("queue empty");
+	}
+	else{
+		printf("queue is \n");
+		while(i!=rear){
+			printf("%d\n",queue[i]);
+			i = (i+1)%n;
+		}
+		printf("%d\n",queue[rear]);
+	}
+}
+int main(){
+	enqueue(12);
+	enqueue(52);
+	enqueue(19);
+	enqueue(86);
+	display();
+	dequeue();	
+	dequeue();
+	display();
+
+	
+	return 0;
+}
+===========================================================================
+
