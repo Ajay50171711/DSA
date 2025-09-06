@@ -142,178 +142,226 @@ int main(){
 ==================================================================================================
 circular queue
 ---------------
+#include <stdio.h>
+#include <stdlib.h>
 
-//circular queue implementatiomn using array
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
 
-#include<stdio.h>
-#include<stdlib.h>
-#define n 5
+struct Node* front = NULL;
+struct Node* rear = NULL;
 
-int queue[n];
-int front =-1;
-int rear =-1;
+// Enqueue operation
+void enqueue(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
 
-
-void enqueue(int value){
-	if(front == -1 && rear==-1){
-		front = rear = 0;
-		queue[rear]=value;
-	}
-	else if((rear+1)%n==front){
-		printf("queue is full");
-	}
-	else{
-		rear = (rear+1)%n;
-		queue[rear]=value;
-	}
+    if (front == NULL) {  // First element
+        front = rear = newNode;
+        rear->next = front; // circular link
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+        rear->next = front; // maintain circular link
+    }
+    printf("%d enqueued to queue\n", value);
 }
 
-void dequeue(){
-	if(front==-1 && rear == -1){
-		printf("their is no element to remove from the queue");
-	}
-	else if(front==rear){
-		front = rear= -1;
-	}
-	else{
-		printf("%d is dequeue\n",queue[front]);
-		front = (front+1)%n;
-	}
-}
-
-void display(){
-	int i =  front;
-	if(front==-1 && rear==-1){
-		printf("queue empty");
-	}
-	else{
-		printf("queue is \n");
-		while(i!=rear){
-			printf("%d\n",queue[i]);
-			i = (i+1)%n;
-		}
-		printf("%d\n",queue[rear]);
-	}
-}
-int main(){
-	enqueue(12);
-	enqueue(52);
-	enqueue(19);
-	enqueue(86);
-	display();
-	dequeue();	
-	dequeue();
-	display();
-
-	
-	return 0;
-}
-===========================================================================
-Double Ended Queue
--------------------
-
-#include<stdio.h>
-#define n 5
-
-int deque[n];
-int f=-1, r=-1;
-
-void enqueuefront(int value){
-    if(f == 0 && r == n-1){
-        printf("Queue is full\n");
-    }
-    else if(f==-1 && r==-1){
-        f=r=0;
-        deque[f]=value;
-    }
-    else if(f==0){
-        f=n-1;
-        deque[f]=value;
-    }
-    else{
-        f--;
-        deque[f]=value;
-    }
-}
-
-void enqueuerear(int value){
-    if(f==0 && r == n-1){
-        printf("Queue is full\n");
-    }
-    else if(f==-1 && r==-1){
-        f = r= 0;
-        deque[r]=value;
-    }
-    else if(r == n-1){
-        r = 0;
-        deque[r]=value;
-    }
-    else{
-        r++;
-        deque[r]=value;
-    }
-}
-
-void display(){
-    if(f==-1 && r==-1){
+// Dequeue operation
+void dequeue() {
+    if (front == NULL) {
         printf("Queue is empty\n");
         return;
     }
-    int i = f;
-    while(i!=r){
-        printf("%d ",deque[i]);
-        i = (i+1)%n;
-    }
-    printf("%d\n",deque[r]);
-}
 
-void dequefront(){
-    if(f==-1 && r ==-1){
-        printf("Queue is empty\n");
-    }
-    else if(f==r){
-        printf("%d removed\n",deque[f]);
-        f=r=-1;
-    }
-    else if(f==n-1){
-        printf("%d removed\n",deque[f]);
-        f= 0;
-    }
-    else{
-        printf("%d removed\n",deque[f]);
-        f++;
-    }
-}
-    
-void dequerear(){
-    if(f==-1 && r == -1){
-        printf("Queue is empty\n");
-    }
-    else if(f==r){
-        printf("%d removed\n",deque[r]);
-        f = r = -1;
-    }
-    else if(r==0){
-        printf("%d removed\n",deque[r]);
-        r=n-1;
-    }
-    else{
-        printf("%d removed\n",deque[r]);
-        r--;
+    if (front == rear) {  // Only one element
+        printf("%d dequeued from queue\n", front->data);
+        free(front);
+        front = rear = NULL;
+    } else {
+        struct Node* temp = front;
+        printf("%d dequeued from queue\n", front->data);
+        front = front->next;
+        rear->next = front; // maintain circular link
+        free(temp);
     }
 }
 
-int main(){
-    enqueuefront(12);
-    enqueuefront(56);
-    enqueuefront(89);
-    dequerear();
-    enqueuerear(100);
-    enqueuerear(200);
-    dequefront();
+// Display queue elements
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty\n");
+        return;
+    }
+    struct Node* temp = front;
+    printf("Queue elements: ");
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != front);
+    printf("\n");
+}
+
+// Peek at the front element
+void peek() {
+    if (front == NULL) {
+        printf("Queue is empty\n");
+    } else {
+        printf("Front element is: %d\n", front->data);
+    }
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
     display();
+
+    dequeue();
+    display();
+
+    enqueue(40);
+    enqueue(50);
+    display();
+
+    peek();
+
     return 0;
 }
 
 
 
+==================================================================================================
+Double Ended queue
+---------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+    struct Node* prev;
+};
+
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+// Insert at rear
+void enqueueRear(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+
+    if (front == NULL) { // First node
+        front = rear = newNode;
+        front->next = front->prev = front; // circular
+    } else {
+        newNode->prev = rear;
+        newNode->next = front;
+        rear->next = newNode;
+        front->prev = newNode;
+        rear = newNode;
+    }
+    printf("%d inserted at rear\n", value);
+}
+
+// Insert at front
+void enqueueFront(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+
+    if (front == NULL) { // First node
+        front = rear = newNode;
+        front->next = front->prev = front;
+    } else {
+        newNode->next = front;
+        newNode->prev = rear;
+        rear->next = newNode;
+        front->prev = newNode;
+        front = newNode;
+    }
+    printf("%d inserted at front\n", value);
+}
+
+// Delete from front
+void dequeueFront() {
+    if (front == NULL) {
+        printf("Deque is empty\n");
+        return;
+    }
+    if (front == rear) { // Only one element
+        printf("%d deleted from front\n", front->data);
+        free(front);
+        front = rear = NULL;
+    } else {
+        struct Node* temp = front;
+        printf("%d deleted from front\n", front->data);
+        front = front->next;
+        rear->next = front;
+        front->prev = rear;
+        free(temp);
+    }
+}
+
+// Delete from rear
+void dequeueRear() {
+    if (rear == NULL) {
+        printf("Deque is empty\n");
+        return;
+    }
+    if (front == rear) { // Only one element
+        printf("%d deleted from rear\n", rear->data);
+        free(rear);
+        front = rear = NULL;
+    } else {
+        struct Node* temp = rear;
+        printf("%d deleted from rear\n", rear->data);
+        rear = rear->prev;
+        rear->next = front;
+        front->prev = rear;
+        free(temp);
+    }
+}
+
+// Display elements
+void display() {
+    if (front == NULL) {
+        printf("Deque is empty\n");
+        return;
+    }
+    struct Node* temp = front;
+    printf("Deque elements: ");
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != front);
+    printf("\n");
+}
+
+int main() {
+    enqueueRear(10);
+    enqueueRear(20);
+    enqueueFront(5);
+    display();
+
+    dequeueFront();
+    display();
+
+    enqueueRear(30);
+    enqueueFront(2);
+    display();
+
+    dequeueRear();
+    display();
+
+    return 0;
+}
