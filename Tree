@@ -231,6 +231,71 @@ Try it .........
 
 ------------------------------------------------------------------
 
+How to find the maximum number of nodes in a binary tree at height h ?
+How to find the minimum number of nodes in a binary tree at height h ?
+-------------------------------------------------------------------------
+Construct Binary tree from Preorder and Inorder
+--------------------------------------------
+Preorder: 1 2 4 5 3 6 7
+Inorder: 4 2 5 1 6 3 7
+
+        1
+       / \
+      2   3
+     / \ / \
+    4  5 6  7
+--------------------------------------------------
+Construct Binary tree from Postorder and Inorder
+--------------------------------------------------
+Inorder (Left – Root – Right)
+[2, 5, 7, 9, 10, 15, 20]
+
+Postorder (Left – Right – Root)
+[2, 9, 7, 5, 20, 15, 10]
+
+
+        10
+       /  \
+      5    15
+     / \     \
+    2   7     20
+         \
+          9
+-------------------------------------------------
+Construct Binary tree from Postorder and preorder
+-------------------------------------------------
+Impossible to construct uniquely from only preorder and postorder.
+
+but we can create unique representaion of full binary tree
+---------------------------------------------------------------
+Preorder (Root → Left → Right):
+A B D E H I C F G
+
+Postorder (Left → Right → Root):
+D H I E B F G C A
+
+            A
+          /   \
+         B     C
+        / \   / \
+       D   E F   G
+          / \
+         H   I
+--------------------------------------------------------------------------
+construct  a binary search tree by only preoreder 
+----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
