@@ -188,9 +188,9 @@ implementation of binary tree by array representation
 
 
 📦 Array Representation (Level-Order)
-
+----------------------------------------------------------------
 We represent the tree in array only for complete binary tree:
-
+-----------------------------------------------------------------
 Indexing starts at 0.
 
 For a node at index i:
@@ -282,8 +282,32 @@ D H I E B F G C A
           / \
          H   I
 --------------------------------------------------------------------------
-construct  a binary search tree by only preoreder 
+construct  a binary search tree by only Preoreder 
 ----------------------------------------------------
+
+Preorder (Root–Left–Right): 15, 10, 8, 12, 20, 17, 25
+(In a BST, the inorder is always the sorted sequence of node values.)
+Inorder (Left–Root–Right): 8, 10, 12, 15, 17, 20, 25
+
+        15
+       /  \
+     10    20
+    /  \   / \
+   8   12 17 25
+-------------------------------------------------------------------------------
+construct  a binary search tree by only Postoreder 
+----------------------------------------------------
+Postorder (Left–Right–Root): 2, 7, 5, 12, 20, 15, 10
+
+Inorder (Left–Root–Right): 2, 5, 7, 10, 12, 15, 20
+
+          10
+         /  \
+        5    15
+       / \   / \
+      2   7 12 20
+-----------------------------------------------------------------------------------------------------------------------
+
 
 
 
