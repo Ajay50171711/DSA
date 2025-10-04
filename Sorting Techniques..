@@ -1,0 +1,147 @@
+BUBBLE SORT...
+
+What is Bubble Sort?
+Bubble Sort is one of the simplest sorting algorithms. It sorts a list by repeatedly swapping adjacent elements if they are in the wrong order.
+
+How does Bubble Sort work?
+
+ ->  Start at the beginning of the list.
+ ->  Compare the current element with the next element.
+ ->  If the current element is greater than the next, swap them.
+ ->  Move to the next pair and repeat until the end of the list.
+ ->  After each pass, the largest unsorted element "bubbles up" to its correct position at the end.
+ ->  Repeat the process for the remaining unsorted part of the list until fully sorted.
+
+Lets understand it with the help of an example:
+
+Sort the array: [5, 3, 8, 4, 2]
+
+Pass 1:
+Compare 5 and 3 → swap → [3, 5, 8, 4, 2]
+Compare 5 and 8 → no swap → [3, 5, 8, 4, 2]
+Compare 8 and 4 → swap → [3, 5, 4, 8, 2]
+Compare 8 and 2 → swap → [3, 5, 4, 2, 8]
+
+Largest number 8 is now at the end.
+
+Pass 2:
+Compare 3 and 5 → no swap → [3, 4, 5, 2, 8]
+Compare 5 and 4 → swap → [3, 4, 5, 2, 8]
+Compare 5 and 2 → swap → [3, 4, 2, 5, 8]
+
+Pass 3:
+Compare 3 and 4 → no swap
+Compare 4 and 2 → swap → [3, 2, 4, 5, 8]
+
+Pass 4:
+Compare 3 and 2 → swap → [2, 3, 4, 5, 8]
+
+Now the array is sorted!
+
+Complexity:
+
+Time Complexity:       Worst and average case: O(n²)
+                       Best case (already sorted): O(n)
+
+Best case (already sorted): O(n)
+Space Complexity: O(1) (in-place sorting)
+
+====================================================================================================
+Selection Sort....
+
+What is Selection Sort?
+
+Selection Sort is a sorting algorithm that divides the list into two parts: 
+the sorted part at the front and the unsorted part at the back. 
+It repeatedly selects the smallest (or largest) element from the 
+unsorted part and swaps it with the first element in the unsorted part,
+growing the sorted part by one element each time.
+
+How does Selection Sort work?
+
+-> Start with the entire list as unsorted.
+-> Find the minimum element in the unsorted part.
+-> Swap this minimum element with the first element of the unsorted part.
+-> Now, the sorted part increases by one element (at the front).
+-> Repeat the process for the rest of the unsorted list.
+
+Lets understand it with the help of an example:
+
+Sort the array: [64, 25, 12, 22, 11]
+
+Pass 1:
+Find the minimum element in [64, 25, 12, 22, 11] → 11
+Swap 11 with 64 → [11, 25, 12, 22, 64]
+
+Pass 2:
+Find the minimum element in [25, 12, 22, 64] → 12
+Swap 12 with 25 → [11, 12, 25, 22, 64]
+
+Pass 3:
+Find the minimum element in [25, 22, 64] → 22  
+Swap 22 with 25 → [11, 12, 22, 25, 64]
+
+Pass 4:
+Find the minimum element in [25, 64] → 25
+Swap 25 with 25 (no change)
+The list is now sorted: [11, 12, 22, 25, 64]
+
+Complexity:
+Time Complexity:
+Worst, average, and best case: O(n²)
+(because it always scans the remaining unsorted part)
+
+Space Complexity: O(1) (in-place sorting)
+
+============================================================================
+
+Insertion Sort.......
+
+What is Insertion Sort?
+
+Insertion Sort is a sorting algorithm that builds the 
+sorted array one element at a time by repeatedly taking 
+the next element and inserting it into its correct position 
+among the previously sorted elements.
+
+How does Insertion Sort work?
+
+ -> Start with the second element (consider the first element sorted).
+ -> Compare the current element with the elements before it.
+ -> Shift all larger elements one position to the right.
+ -> Insert the current element into its correct position.
+ -> Repeat for all elements.
+
+Lets understand it with the help of an example:
+
+Sort the array: [5, 3, 8, 4, 2]
+
+Pass 1 (consider 3):
+Compare 3 with 5 → 5 is larger, shift 5 right → [5, 5, 8, 4, 2]
+Insert 3 in place of 5 → [3, 5, 8, 4, 2]
+
+Pass 2 (consider 8):
+8 is greater than 5 → no shifting needed → [3, 5, 8, 4, 2]
+
+Pass 3 (consider 4):
+Compare 4 with 8 → shift 8 right → [3, 5, 8, 8, 2]
+Compare 4 with 5 → shift 5 right → [3, 5, 5, 8, 2]
+Insert 4 → [3, 4, 5, 8, 2]
+
+Pass 4 (consider 2):
+Compare 2 with 8 → shift 8 right → [3, 4, 5, 8, 8]
+Compare 2 with 5 → shift 5 right → [3, 4, 5, 5, 8]
+Compare 2 with 4 → shift 4 right → [3, 4, 4, 5, 8]
+Compare 2 with 3 → shift 3 right → [3, 3, 4, 5, 8]
+Insert 2 → [2, 3, 4, 5, 8]
+
+Now the array is sorted!
+
+Complexity:
+
+Time Complexity:
+Worst and average case: O(n²)
+Best case (already sorted): O(n)
+
+Space Complexity: O(1) (in-place sorting)
+Stable sort: Yes (it preserves the order of equal elements)
