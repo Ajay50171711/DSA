@@ -1,0 +1,230 @@
+In Data Structures and Algorithms (DSA),
+a Graph is a non-linear data structure consisting of vertices (nodes) and edges (connections) between those vertices.
+
+      A
+     / \
+    B---C
+     \
+      D
+
+Here:
+
+Vertices = A, B, C, D
+Edges = (A,B), (A,C), (B,C), (B,D)
+
+Important Graph Terms
+1. Vertex (Node)
+
+A vertex is a point in a graph.
+
+Example:
+
+A, B, C, D
+
+Number of vertices = 4
+
+2. Edge
+
+An edge is a connection between two vertices.
+
+Example:
+
+A ----- B
+
+Edge = (A, B)
+
+3. Adjacent Vertices
+
+Two vertices are adjacent if they are connected by an edge.
+
+Example:
+
+A ----- B
+A is adjacent to B.
+B is adjacent to A.
+4. Degree of a Vertex
+
+The degree is the number of edges connected to a vertex.
+
+Example:
+
+      A
+     / \
+    B---C
+Degree(A) = 2
+Degree(B) = 2
+Degree(C) = 2
+5. In-degree (Directed Graph)
+
+Number of incoming edges.
+
+Example:
+
+A → B ← C
+
+In-degree(B) = 2
+
+6. Out-degree (Directed Graph)
+
+Number of outgoing edges.
+
+Example:
+
+A → B → C
+
+Out-degree(B) = 1
+
+7. Path
+
+A path is a sequence of vertices connected by edges.
+
+Example:
+
+A → B → C → D
+
+Path:
+
+A → B → C → D
+
+Length of path = 3 edges
+
+8. Simple Path
+
+A path that does not repeat any vertex.
+
+Example:
+
+A → B → C → D
+
+Simple path ✔
+
+9. Cycle
+
+A cycle is a path that starts and ends at the same vertex.
+
+Example:
+
+A
+| \
+|  \
+C---B
+
+Cycle:
+
+A → B → C → A
+10. Connected Graph
+
+Every vertex can be reached from every other vertex.
+
+Example:
+
+A---B---C
+     |
+     D
+
+All vertices are connected.
+
+11. Disconnected Graph
+
+Some vertices cannot be reached from others.
+
+Example:
+
+A---B
+
+C---D
+
+Two separate components.
+
+12. Directed Graph (Digraph)
+
+Edges have directions.
+
+Example:
+
+A → B → C
+↑
+|
+D
+
+Here the direction matters.
+
+13. Undirected Graph
+
+Edges have no direction.
+
+Example:
+
+A ----- B
+
+Movement is possible in both directions.
+
+14. Weighted Graph
+
+Edges have weights (cost, distance, time).
+
+Example:
+
+A --5-- B --3-- C
+
+Weights:
+
+A to B = 5
+B to C = 3
+15. Unweighted Graph
+
+Edges have no weights.
+
+Example:
+
+A ----- B ----- C
+
+All edges are treated equally.
+
+16. Complete Graph
+
+Every vertex is connected to every other vertex.
+
+Example (4 vertices):
+
+      A
+     /|\
+    / | \
+   B--|--C
+    \ | /
+     \|/
+      D
+
+For n vertices:
+
+Number of edges = n(n−1)/2
+
+Example:
+
+4 vertices → 6 edges
+
+Graph Traversal
+
+The process of visiting all vertices.
+
+Two common traversal algorithms are:
+
+Depth-First Search (DFS): Explores as far as possible along one path before backtracking. Uses a stack (or recursion).
+Breadth-First Search (BFS): Visits all neighboring vertices level by level. Uses a queue.
+
+Graph Representation
+        A
+       / \
+      /   \
+     B     C
+1. Adjacency Matrix
+    A B C
+A   0 1 1
+B   1 0 0
+C   1 0 0
+
+2. Adjacency List
+A → B → C
+B → A
+C → A
+
