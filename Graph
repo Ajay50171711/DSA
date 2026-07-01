@@ -331,3 +331,23 @@ F
 Traversal
 
 A → B → C → D → E → F
+
+
+
+Depth-First Search (DFS)
+
+Definition:
+DFS explores as deep as possible along one path before backtracking.
+
+Data Structure Used: Stack (LIFO) or Recursion
+
+DFS Algorithm
+Start from the source node.
+Mark it as visited.
+Visit one unvisited neighbor.
+Continue until no unvisited neighbor exists.
+Backtrack.
+Repeat until all vertices are visited.
+
+
+
