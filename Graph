@@ -203,15 +203,6 @@ Example:
 
 4 vertices → 6 edges
 
-Graph Traversal
-
-The process of visiting all vertices.
-
-Two common traversal algorithms are:
-
-Depth-First Search (DFS): Explores as far as possible along one path before backtracking. Uses a stack (or recursion).
-Breadth-First Search (BFS): Visits all neighboring vertices level by level. Uses a queue.
-
 Graph Representation
         A
        / \
@@ -228,3 +219,115 @@ A → B → C
 B → A
 C → A
 
+Graph Traversal
+
+The process of visiting all vertices.
+
+Two common traversal algorithms are:
+
+Depth-First Search (DFS): Explores as far as possible along one path before backtracking. Uses a stack (or recursion).
+Breadth-First Search (BFS): Visits all neighboring vertices level by level. Uses a queue.
+
+Breadth-First Search (BFS)
+
+Definition:
+BFS is a graph traversal algorithm that visits vertices level by level. It first visits all neighbors of the current node before moving to the next level.
+
+Data Structure Used: Queue (FIFO)
+
+BFS Algorithm
+Start from the source node.
+Mark it as visited.
+Add it to the queue.
+Remove the front node from the queue.
+Visit all its unvisited neighbors and add them to the queue.
+Repeat until the queue is empty.
+
+Example 1 (Simple Tree)
+        A
+      /   \
+     B     C
+    / \   / \
+   D   E F   G
+BFS Traversal from A
+
+Queue operations:
+
+Queue	Visited
+A	A
+B C	A
+C D E	B
+D E F G	C
+E F G	D
+F G	E
+G	F
+Empty	G
+Output
+A → B → C → D → E → F → G
+
+Notice that BFS visits level by level.
+
+Example 2
+        1
+      / | \
+     2  3  4
+        |
+        5
+BFS
+
+Start = 1
+
+Level 0
+
+1
+
+Level 1
+
+2 3 4
+
+Level 2
+
+5
+
+Traversal
+
+1 → 2 → 3 → 4 → 5
+Example 3 (Graph)
+      A
+     / \
+    B   C
+   / \   \
+  D   E---F
+
+Edges
+
+A-B
+A-C
+B-D
+B-E
+C-F
+E-F
+BFS from A
+
+Queue progression
+
+A
+↓
+
+B C
+↓
+
+C D E
+↓
+
+D E F
+↓
+
+E F
+↓
+
+F
+
+Traversal
+
+A → B → C → D → E → F
