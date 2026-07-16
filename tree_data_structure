@@ -1,1 +1,251 @@
+Creating a tree  with 2 child
 
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node* createNode(int value)
+{
+    struct Node *newNode;
+
+    newNode = (struct Node*)malloc(sizeof(struct Node));
+
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    return newNode;
+}
+
+int main()
+{
+    struct Node *root;
+
+    root = createNode(10);
+
+    root->left = createNode(20);
+    root->right = createNode(30);
+    
+    root->left->left= createNode(40);
+    root->left->right= createNode(50);
+    
+    root->right->left = createNode(60);
+    root->right->right = createNode(70);
+    
+    
+    
+
+    printf("Root = %d\n", root->data);
+    printf("Left Child = %d\n", root->left->data);
+    printf("Right Child = %d\n", root->right->data);
+    
+    
+	printf("Left Child left = %d\n", root->left->left->data);
+	printf("Left Child right = %d\n", root->left->right->data);
+    
+    printf("Right Child left = %d\n", root->right->left->data);
+    printf("Right Child right = %d\n", root->right->right->data);
+
+    return 0;
+}
+
+
+cretaing a tree with n child and preorder traversal 
+=================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    char data;
+    struct Node *firstChild;
+    struct Node *nextSibling;
+};
+
+// Create a new node
+struct Node* createNode(char value)
+{
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+
+    newNode->data = value;
+    newNode->firstChild = NULL;
+    newNode->nextSibling = NULL;
+
+    return newNode;
+}
+
+// Add child to a parent
+void addChild(struct Node *parent, struct Node *child)
+{
+    // If parent has no child
+    if(parent->firstChild == NULL)
+    {
+        parent->firstChild = child;
+    }
+    else
+    {
+        // Go to the last sibling
+        struct Node *temp = parent->firstChild;
+
+        while(temp->nextSibling != NULL)
+        {
+            temp = temp->nextSibling;
+        }
+
+        temp->nextSibling = child;
+    }
+}
+
+// Preorder Traversal
+void preorder(struct Node *root)
+{
+    if(root == NULL)
+        return;
+
+    printf("%c ", root->data);
+
+    preorder(root->firstChild);
+    preorder(root->nextSibling);
+}
+
+int main()
+{
+    struct Node *A = createNode('A');
+    struct Node *B = createNode('B');
+    struct Node *C = createNode('C');
+    struct Node *D = createNode('D');
+    struct Node *E = createNode('E');
+    struct Node *F = createNode('F');
+    struct Node *G = createNode('G');
+
+    // Build the tree
+    addChild(A, B);
+    addChild(A, C);
+    addChild(A, D);
+
+    addChild(B, E);
+    addChild(B, F);
+
+    addChild(D, G);
+
+    printf("Preorder Traversal:\n");
+    preorder(A);
+
+    return 0;
+}
+
+================all traversal ======================
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+// Function to create a new node
+struct Node* createNode(int value)
+{
+    struct Node *newNode;
+
+    newNode = (struct Node*)malloc(sizeof(struct Node));
+
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    return newNode;
+}
+
+// Preorder Traversal
+// Root -> Left -> Right
+void preorder(struct Node *root)
+{
+    if(root == NULL)
+        return;
+
+    printf("%d ", root->data);
+
+    preorder(root->left);
+    preorder(root->right);
+}
+
+// Inorder Traversal
+// Left -> Root -> Right
+void inorder(struct Node *root)
+{
+    if(root == NULL)
+        return;
+
+    inorder(root->left);
+
+    printf("%d ", root->data);
+
+    inorder(root->right);
+}
+
+// Postorder Traversal
+// Left -> Right -> Root
+void postorder(struct Node *root)
+{
+    if(root == NULL)
+        return;
+
+    postorder(root->left);
+
+    postorder(root->right);
+
+    printf("%d ", root->data);
+}
+
+int main()
+{
+    struct Node *root;
+
+    // Create Root
+    root = createNode(10);
+
+    // Level 1
+    root->left = createNode(20);
+    root->right = createNode(30);
+
+    // Level 2
+    root->left->left = createNode(40);
+    root->left->right = createNode(50);
+
+    root->right->left = createNode(60);
+    root->right->right = createNode(70);
+
+    printf("Tree Structure:\n");
+    printf("          10\n");
+    printf("         /  \\\n");
+    printf("       20    30\n");
+    printf("      / \\    / \\\n");
+    printf("    40  50 60  70\n\n");
+
+    printf("Preorder Traversal : ");
+    preorder(root);
+
+    printf("\n");
+
+    printf("Inorder Traversal  : ");
+    inorder(root);
+
+    printf("\n");
+
+    printf("Postorder Traversal: ");
+    postorder(root);
+
+    printf("\n");
+
+    return 0;
+}
